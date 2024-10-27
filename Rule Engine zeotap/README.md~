@@ -1,0 +1,153 @@
+# Rule Engine API with Flask - README
+
+This guide will walk you through the steps to set up and test the Rule Engine API using Flask and Thunder Client in Visual Studio Code. The API allows you to create, combine, and evaluate rules against predefined data.
+
+
+
+## Prerequisites
+Before you begin, ensure you have the following installed:
+  *Python (version 3.6 or higher)
+  *Flask (install using pip install Flask)
+  *Thunder Client (VS Code Extension for API testing)
+  *Visual Studio Code
+## Steps to Run the Flask API
+### 1. Setup the Project
+  Ensure that you have your Flask project directory set up properly. Your app.py file should be located at C:/Users/Acer/Desktop/Django Projects/Flask/App.py.
+### 2. Running the Flask API
+  1.Open a terminal in your project directory.
+  2.Run the Flask app using the following command:
+  python "C:/Users/Acer/Desktop/Django Projects/Flask/App.py"
+### 3.Once the Flask app is running, you should see the following output in the terminal:
+  * Serving Flask app 'App'
+  * Debug mode: off
+  * Running on http://127.0.0.1:5000/
+Your API is now running locally on port 5000.
+
+## API Endpoints
+The Rule Engine API consists of the following endpoints:
+  *Create Rule: POST /api/create_rule
+  *Combine Rules: POST /api/combine_rules
+  *Evaluate Rule: POST /api/evaluate_rule
+
+## Testing with Thunder Client
+Follow the steps below to test the API using Thunder Client in Visual Studio Code.
+
+### 1. Install Thunder Client
+  If you haven’t already, install the Thunder Client extension in Visual Studio Code:
+     1.Open Visual Studio Code.
+     2.Go to the Extensions view by clicking on the square icon on the left sidebar.
+     3.Search for Thunder Client and install the extension.
+
+### 2. Create and Send Requests
+
+#A. Add a New Rule
+1.Create a New Request:
+    Open Thunder Client, and click on New Request.
+2.Set the Request Type:
+   Choose POST from the dropdown next to the URL input field.
+3.Enter the Request URL:
+*Type in the following URL:
+  http://127.0.0.1:5000/api/create_rule
+4.Add Headers:
+  *Click on the Headers tab.
+  *Add the following header
+   Content-Type: application/json
+5.Add the Request Body:
+   *Go to the Body tab and select JSON.
+   *Enter the following JSON data (modify the rule as needed)
+   {
+  "name": "age_rule",
+  "rule": "age > 30 AND salary > 50000"
+    }
+6.Send the Request:
+  *Click the Send button.
+7.Check the Response:
+ *You should see a success message confirming that the rule was created. For example
+   {
+  "message": "Rule 'age_rule' created successfully"
+   }
+
+# B. Combine Multiple Rules
+1.Create a New Request:
+  *Open Thunder Client and click on New Request.
+2.Set the Request Type:
+   *Choose POST.
+3.Enter the Request URL:
+   *Use the following URL:
+      http://127.0.0.1:5000/api/combine_rules
+4.Add Headers:
+    1.Click on the Headers tab.
+    2.Add the following header
+     Content-Type: application/json
+5.Add the Request Body:
+1.Go to the Body tab and select JSON.
+2.Enter the following JSON data
+{
+  "name": "combined_rule",
+  "rules": ["age_rule", "salary_rule"],  // Replace with actual rule names
+  "operator": "AND"  // or "OR"
+}
+6.Send the Request:
+*Click Send.
+7.Check the Response:
+*You should receive a confirmation that the combined rule was created
+    {
+     "message": "Combined rule 'combined_rule' created successfully"
+    }
+#C. Evaluate a Rule
+1.Create a New Request:
+  *Open Thunder Client and click on New Request.
+2.Set the Request Type:
+  *Choose POST.
+3.Enter the Request URL:
+   *Use the following URL
+       http://127.0.0.1:5000/api/evaluate_rule
+4.Add Headers:
+  1.Click on the Headers tab.
+  2.Add the following header:
+  Content-Type: application/json
+
+5.Add the Request Body:
+*Go to the Body tab and select JSON.
+*Enter the following JSON data
+{
+  "name": "combined_rule"  // Replace with the rule you want to evaluate
+}
+6.Send the Request:
+  *Click Send.
+7.Check the Response:
+  You should see the result of the evaluation (either true or false), for example:
+  {
+  "result": true
+  }
+
+#Sample Data for Rule Evaluation
+The predefined dataset used for evaluation in this API is as follows:
+{
+   "age": 35,
+   "department": "Sales",
+   "salary": 60000,
+   "experience": 3
+}
+
+Make sure your rules correspond to these attributes
+
+#Conclusion
+You can now use the Flask API to create, combine, and evaluate rules with Thunder Client. As you continue to develop the application, you can enhance the rule engine, add new features, or connect the API to a more advanced UI.
+
+Feel free to reach out if you have any questions or need further assistance!
+
+##Additional Features (Optional)
+   1.Support for more complex conditions: Extend the rule engine to handle more complex conditions, including nested rules.
+   2.UI Integration: Connect this API to a web-based or Tkinter-based frontend for user-friendly rule management.
+
+This completes the README for your Flask Rule Engine API. You can now use this document to guide others on how to interact with your API, or to serve as a reference for yourself.
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,92 @@
+1 . python "C:/Users/Acer/Desktop/Django Projects/Flask/App.py"
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2 .API Endpoints
+
+The Rule Engine API consists of the following endpoints:
+
+Create Rule: POST /api/create_rule        /=   http://127.0.0.1:5000/api/create_rule
+
+Combine Rules: POST /api/combine_rules    /=   http://127.0.0.1:5000/api/combine_rules
+
+Evaluate Rule: POST /api/evaluate_rule    /=   http://127.0.0.1:5000/api/evaluate_rule
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Add headers
+
+Content-Type: application/json
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Create Rules JSON:
+
+{
+  "name": "age_rule",
+  "rule": "age > 30 AND salary > 50000"
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Combine Rule JSON:
+
+{
+  "name": "combined_rule",
+  "rules": ["age_rule", "salary_rule"],  // Replace with actual rule names
+  "operator": "AND"  // or "OR"
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.Evaluate Rule
+
+{
+  "name": "combined_rule"  // Replace with the rule you want to evaluate
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.Testing
+
+ data = {"age": 35,"department": "Sales", "salary": 60000, "experience": 3})
+
+Set1 Rule:
+  
+{
+  "name": "RuleA1",
+  "rule": "age > 30 AND department = Sales"
+}
+
+
+{
+  "name": "RuleA2",
+  "rule": "age < 25 AND department = Marketing"
+}
+
+
+Result : False (AND)
+
+Set2 Rule:
+
+{
+  "name": "RuleB1",
+  "rule": "age > 30 AND department = Marketing"
+}
+
+{
+  "name": "RuleB2",
+  "rule": "salary >20000 OR experience > 5"
+
+Result : False (AND)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
